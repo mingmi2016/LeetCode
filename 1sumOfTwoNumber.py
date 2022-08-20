@@ -10,10 +10,10 @@ target = int(targets)
 
 listReturn = []
 for i in range(len(intss)):
-    for j in range(len(intss)-1):
-        if intss[i] + intss[j+1] == target:
+    for j in range(i+1,len(intss)):
+        if intss[i] + intss[j] == target:
            listReturn.append(i)
-           listReturn.append(j+1)
+           listReturn.append(j)
            break
     if len(listReturn) > 0:
         break
