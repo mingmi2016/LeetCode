@@ -34,7 +34,7 @@ intss1 = np.array(num)
 
 
 arr = input("please input second linkList:")
-num = [int(n) for n in arr.split()]j
+num = [int(n) for n in arr.split()]
 intss2 = np.array(num)
 
 l = LinkList()
@@ -46,9 +46,46 @@ l2 = l.initList(intss2)
 total = 0     #用来存储两个节点的和
 next1 = 0     #判断下一位是否要加1
 
-result = 
-while l1 != None && l2 != None:
-    
+#这个地方初始化是0，这个节点到最后是用不到的，最后返回的result.next,直接就把这个舍弃了
+result = ListNode(0)   #套路，这个result指针是一直不动的，最后返回结果
+cur = result    #套路，这个cur是在for循环的时候移动的
+
+while (l1 != None and l2 != None):
+    total = l1.val + l2.val +next1 
+    cur.next = ListNode(total % 10)
+    next1 = total / 10
+    l1 = l1.next
+    l2 = l2.next
+    cur = cur.next
+
+while l1 != None:
+    total = l1.val + next1
+    cur.next = ListNode(total % 10)
+    next1 = total / 10
+    l1 = l1.next
+    cur = cur.next
+
+
+while l2 != None:
+    total = l2.val + next1
+    cur.next = ListNode(total % 10)
+    next1 = total / 10
+    l2 = l2.next
+    cur = cur.next
+
+
+if next1 != 0:
+    cur.next = ListNode(next1)
+
+
+# return result.next    #这个地方为什么是返回next ???
+
+#直接把链表打印出来
+
+printcur = result.next
+while printcur != None:
+    print(printcur.val)
+    printcur = printcur.next
 
 
 
